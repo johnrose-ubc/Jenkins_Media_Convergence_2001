@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Map 1 — Jenkins' Media Convergence (2001)</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0c1018;
+  font-family: 'Georgia', serif;
+  color: #ddd;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  text-align: center;
+  padding: 22px 0 6px;
+}
+.page-header h1 {
+  font-size: 17px;
+  color: #f0f0f0;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.page-header .subtitle {
+  font-size: 11px;
+  color: #484858;
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+
+#map {
+  position: relative;
+  width: 1200px;
+  height: 960px;
+}
+
+svg#lines {
+  position: absolute;
+  inset: 0;
+  width: 1200px;
+  height: 960px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.node { position: absolute; z-index: 2; }
+
+/* ── Central node ── */
+/*
+  left=462, top=390, width=276
+  centre-x = 462+138 = 600
+  centre-y = 390+60  = 450  (estimated ~120px tall)
+  top-edge   = (600, 390)
+  bottom-edge= (600, 510)
+  left-edge  = (462, 450)
+  right-edge = (738, 450)
+*/
+.central {
+  left: 462px; top: 390px;
+  width: 276px;
+  background: #161626;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 12px;
+  padding: 18px 20px;
+  text-align: center;
+}
+.central h2 {
+  font-size: 15px;
+  color: #fff;
+  font-weight: normal;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.central .quote {
+  font-size: 10px;
+  color: #888;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.central .attr {
+  font-size: 9px;
+  color: #555;
+}
+
+/* ── Process cards ── */
+/*
+  All cards: width=255px
+
+  Tech:     left=472, top=20   → bottom-centre ≈ (600, 20+card_h)
+  Economic: left=912, top=260  → left-centre   ≈ (912, 260+card_h/2)
+  Organic:  left=740, top=660  → top-centre    ≈ (867, 660)
+  Cultural: left=205, top=660  → top-centre    ≈ (332, 660)
+  Global:   left=33,  top=260  → right-centre  ≈ (288, 260+card_h/2)
+*/
+.card {
+  width: 255px;
+  border-radius: 8px;
+  padding: 13px 15px;
+}
+.card-title {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+ul.bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul.bullets li {
+  font-size: 10px;
+  line-height: 1.65;
+  color: #bebebe;
+  padding: 2px 0 2px 13px;
+  position: relative;
+}
+ul.bullets li::before {
+  content: '\b7';
+  position: absolute;
+  left: 2px;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ── Colour themes ── */
+.tech     { background:#071624; border:1.5px solid #2980b9; }
+.tech     .card-title { color:#3498db; border-bottom:1px solid #2980b928; }
+
+.econ     { background:#1b1106; border:1.5px solid #d68910; }
+.econ     .card-title { color:#f39c12; border-bottom:1px solid #d6891028; }
+
+.organic  { background:#081a09; border:1.5px solid #27ae60; }
+.organic  .card-title { color:#2ecc71; border-bottom:1px solid #27ae6028; }
+
+.cultural { background:#110c1e; border:1.5px solid #8e44ad; }
+.cultural .card-title { color:#9b59b6; border-bottom:1px solid #8e44ad28; }
+
+.global   { background:#1b0808; border:1.5px solid #c0392b; }
+.global   .card-title { color:#e74c3c; border-bottom:1px solid #c0392b28; }
+
+.page-footer {
+  text-align: center;
+  padding: 8px 0 22px;
+  font-size: 10px;
+  color: #2a2a38;
+  letter-spacing: 0.04em;
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Jenkins&rsquo; Media Convergence (2001)</h1>
+  <div class="subtitle">IP 4 &nbsp;&middot;&nbsp; Map 1 of 2 &nbsp;&middot;&nbsp; ETEC 511</div>
+</div>
+
+<div id="map">
+  <svg id="lines">
+    <!--
+      Central: left=462 top=390 w=276 h≈122
+        centre  = (600, 451)
+        top     = (600, 390)
+        bottom  = (600, 512)
+        left    = (462, 451)
+        right   = (738, 451)
+
+      Tech:     left=472 top=20  w=255  bottom-centre ≈ (600, 175)
+      Economic: left=912 top=260 w=255  left-centre   ≈ (912, 345)
+      Organic:  left=740 top=660 w=255  top-centre    ≈ (868, 660)
+      Cultural: left=205 top=660 w=255  top-centre    ≈ (333, 660)
+      Global:   left=33  top=260 w=255  right-centre  ≈ (288, 345)
+    -->
+
+    <!-- Central → Tech (straight up) -->
+    <line x1="600" y1="390" x2="600" y2="175"
+          stroke="#252535" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Central → Economic (right diagonal up) -->
+    <line x1="738" y1="435" x2="912" y2="345"
+          stroke="#252535" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Central → Organic (right diagonal down) -->
+    <line x1="738" y1="475" x2="868" y2="660"
+          stroke="#252535" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Central → Cultural (left diagonal down) -->
+    <line x1="462" y1="475" x2="333" y2="660"
+          stroke="#252535" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Central → Global (left diagonal up) -->
+    <line x1="462" y1="435" x2="288" y2="345"
+          stroke="#252535" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+
+  <!-- ══ Central ══ -->
+  <div class="node central">
+    <h2>Media Convergence</h2>
+    <div class="quote">&ldquo;An ongoing process, occuring at various intersections of media technologies, industries, content and audiences; it's not an end state.&rdquo;</div>
+    <div class="attr">&mdash; Henry Jenkins, 2001</div>
+  </div>
+
+  <!-- ══ ① Technological ══  top=20 left=472 -->
+  <div class="node card tech" style="left:472px; top:20px;">
+    <div class="card-title">&oplus; Technological Convergence</div>
+    <ul class="bullets">
+      <li>Negroponte&rsquo;s &ldquo;atoms to bits&rdquo;</li>
+      <li>Digitization of all media content</li>
+      <li>Expands relationships between media and enables flow across platforms</li>
+    </ul>
+  </div>
+
+  <!-- ══ ② Economic ══  top=260 left=912 -->
+  <div class="node card econ" style="left:912px; top:260px;">
+    <div class="card-title">&oplus; Economic Convergence</div>
+    <ul class="bullets">
+      <li>Horizontal integration of the entertainment industry</li>
+      <li>AOL Time Warner controls film, television, books, games, web, music, real estate</li>
+      <li>Cultural production restructured around &ldquo;synergies&rdquo;</li>
+      <li>Allows exploitation of branded properties across media platforms</li>
+    </ul>
+  </div>
+
+  <!-- ══ ③ Organic ══  top=660 left=740 -->
+  <div class="node card organic" style="left:740px; top:660px;">
+    <div class="card-title">&oplus; Organic Convergence</div>
+    <ul class="bullets">
+      <li>The new media environment requires multitasking strategies</li>
+      <li>We get an unintentional mash-up of our simultaneous inputs</li>
+      <li>The convergence is internal because we are the focal point for all the inputs</li>
+    </ul>
+  </div>
+
+  <!-- ══ ④ Cultural ══  top=660 left=205 -->
+  <div class="node card cultural" style="left:205px; top:660px;">
+    <div class="card-title">&oplus; Cultural Convergence</div>
+    <ul class="bullets">
+      <li>Technologies, industries, and sub-cultures intersect &rarr; new forms of creativity emerge</li>
+      <li>&ldquo;Archive, annotate, appropriate, recirculate&rdquo; &rarr; a new participatory folk culture</li>
+      <li>Co-opted as cheap user-generated content by marketers seeking brand loyalty</li>
+      <li>Transmedia storytelling exploits each medium&rsquo;s strengths</li>
+      <li>Virtuous cycle with organic convergence as multitasking is normalized</li>
+    </ul>
+  </div>
+
+  <!-- ══ ⑤ Global ══  top=260 left=33 -->
+  <div class="node card global" style="left:33px; top:260px;">
+    <div class="card-title">&oplus; Global Convergence</div>
+    <ul class="bullets">
+      <li>Digital media is frictionless and relatively borderless</li>
+      <li>Multinational economic convergence accelerates this</li>
+      <li>Previously local genres discovered internationally (world music, Asian cinema)</li>
+      <li>These enter the organic convergence mash-up &rarr; rise of the untravelled global citizen</li>
+    </ul>
+  </div>
+
+</div><!-- /#map -->
+
+<div class="page-footer">
+ ETEC-511 IP 4  - Media Convergence by John Rose
+</div>
+
+</body>
+</html>
